@@ -27,7 +27,9 @@ public class str {
         // System.out.println(name);
         // System.out.println(name2);
 
-        
+        //substring
+        String name = "Devansh and Verma";
+        System.out.println(name.substring(5,9));
 
 
 
