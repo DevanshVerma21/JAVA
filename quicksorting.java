@@ -2,37 +2,37 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class quicksorting {
-
-    public static int partition(int arr[], int s, int e) {
-        int p = arr[s];
-        int l = s;
-        int r = e;
-
-        while (l < r) {
-            while (arr[l] <= p)
-                l++;
-            while (arr[r] > p)
-                r--;
-            if (l < r) {
-                int temp = arr[l];
-                arr[l] = arr[r];
-                arr[r] = temp;
+    public static int fun(int arr[], int low, int high) {
+        int pivot = arr[low];
+        int i = low;
+        int j = high;
+        while (i < j) {
+            while (arr[i] <= pivot && i <= high) {
+                i++;
+            }
+            while (arr[j] > pivot && j >= low) {
+                j--;
+            }
+            if (i < j) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
             }
         }
-        // Place pivot in correct position
-        int temp = arr[s];
-        arr[s] = arr[r];
-        arr[r] = temp;
-        return r;
+        int temp = arr[i];
+        arr[i] = arr[low];
+        arr[low] = temp;
+
+        return j;
 
     }
 
-    public static void quicksort(int arr[], int s, int e) {
-        if (s >= e)
-            return;
-        int p = partition(arr, s, e);
-        quicksort(arr, s, p - 1);// left
-        quicksort(arr, p + 1, e);// right
+    public static void qs(int arr[], int low, int high) {
+        if (low < high) {
+            int pivot = fun(arr, low, high);
+            qs(arr, low, pivot - 1);
+            qs(arr, pivot + 1, high);
+        }
     }
 
     public static void main(String[] args) {
@@ -46,13 +46,13 @@ public class quicksorting {
             arr[i] = sc.nextInt();
         }
 
-        quicksort(arr, 0, n - 1);
+        qs(arr, 0, n - 1);
 
         System.out.println("The elements are: ");
         for (int i = 0; i < n; i++) {
             System.out.println(arr[i]);
         }
-
+        sc.close();
     }
 
 }

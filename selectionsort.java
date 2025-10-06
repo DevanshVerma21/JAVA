@@ -3,16 +3,16 @@ import java.util.Scanner;
 public class selectionsort{
 
     public static void sort(int n,int arr[]) {
-        for(int i = 0;i<n-2;i++){
+        for(int i = 0;i<=n-2;i++){
             int min = i;
-            for(int j = i;j<n-1;j++){
+            for(int j = i;j<=n-1;j++){
                 if(arr[j]<arr[min]){
                     min = j;
                 }
             }
-            int temp = arr[min];
-            arr[min] = arr[i];
-            arr[i] = temp;
+            int temp = arr[i];
+            arr[i] = arr[min];
+            arr[min] = temp;
         }
         
     }

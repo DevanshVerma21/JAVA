@@ -2,22 +2,17 @@ import java.util.Scanner;
 
 public class insertionsort {
     public static void sort(int n, int[] arr){
-
-        for(int i = 0;i<n-1;i++){
-            int temp = arr[i];
-            int j;
-            for(j=i-1;j>=0;j--){
-                if(arr[j]> temp){
-                    arr[j+1] = arr[j];
-                }
-                else {    
-                break;
+        for(int i = 0;i<=n-1;i++){
+            int j = i;
+            while(j>0 && arr[j-1]>arr[j]){
+                int temp = arr[j-1];
+                arr[j-1] = arr[j];
+                arr[j] = temp;
+                j--;
             }
-
-            }
-            arr[j+1] = temp;
         }
     }
+
     public static void main(String[] args){
          Scanner sc = new Scanner(System.in);
         System.out.println("Enter the size of array: ");
@@ -37,5 +32,6 @@ public class insertionsort {
         for(int i = 0; i < n; i++){
             System.out.println(arr[i]);
         }
+        sc.close();
     }
 }

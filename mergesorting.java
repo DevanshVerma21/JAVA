@@ -2,45 +2,37 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class mergesorting {
+    public static void merge(int arr[],int low,int mid,int high){
+        ArrayList<Integer> list = new ArrayList<>();
+        int left = low;
+        int right = mid + 1;
 
-    public static void merge(int arr[],int s ,int m,int e){
-        ArrayList<Integer>a1 = new ArrayList<Integer>();
-
-        int l = s;
-        int r = m + 1;
-
-        while(l<=m && r<=e){
-            if(arr[l]<arr[r]){
-                a1.add(arr[l]);
-                l++;
-            }
-            else{
-                a1.add(arr[r]);
-                r++;
+        while(left<=mid  && right<=high){
+            if(arr[left]<=arr[right]){
+                list.add(arr[left++]);
+            }else{
+                list.add(arr[right++]);
             }
         }
-        while(l<=m){
-            a1.add(arr[l]);
-            l++;
+        while(left<=mid){
+            list.add(arr[left++]);
+        }
+        while(right<=high){
+            list.add(arr[right++]);
         }
 
-        while (r <= e) {
-            a1.add(arr[r]);
-            r++;
-        }
-
-
-        for(int i = s;i<=e;i++){
-            arr[i] = a1.get(i-s);
+        for(int i = low;i<=high;i++){
+            arr[i] = list.get(i-low);
         }
     }
-    public static void mergesort(int arr[],int s,int e){
-        if(s<e){
-            int m = s+(e-s)/2;
-            mergesort(arr, s, m); // left
-            mergesort(arr, m+1, e); // right
-            merge(arr, s, m,e); // merging
-        }
+
+    public static void mergesort(int arr[],int low,int high){
+        if(low>=high) return ;
+        int mid = low + (high-low)/2;
+        mergesort(arr, low, mid);
+        mergesort(arr, mid+1, high);
+        merge(arr,low,mid,high);
+
     }
 
     public static void main(String[] args){
@@ -62,5 +54,6 @@ public class mergesorting {
         for(int i = 0; i < n; i++){
             System.out.println(arr[i]);
         }
+        sc.close();
     }
 }
