@@ -8,12 +8,12 @@ public class unionsortedarr {
         int size2 = arr2.length;
 
         ArrayList<Integer> temp = new ArrayList<>();
-        
-        for(int i =0;i<size1;i++){
-            for(int j=0;j<size2;j++){
-                if(arr1[i]!=arr2[j]){
-                    temp.add(arr1[i]);
-                }
+        for (int i = 0; i < size1; i++) {
+            temp.add(arr1[i]);
+        }
+        for (int i = 0; i < size2; i++) {
+            if (!temp.contains(arr2[i])) {
+                temp.add(arr2[i]);
             }
         }
 
@@ -21,9 +21,7 @@ public class unionsortedarr {
         for (int k = 0; k < temp.size(); k++) {
             result[k] = temp.get(k);
         }
-
         return result;
-
     }
 
     public static int[] removeduplicate(int arr[]) {
@@ -44,24 +42,20 @@ public class unionsortedarr {
         System.out.println("enter size1: ");
         int size1 = sc.nextInt();
         int arr1[] = new int[size1];
-        for(int i = 0;i<size1;i++){
-        arr1[i] = sc.nextInt();
+        for (int i = 0; i < size1; i++) {
+            arr1[i] = sc.nextInt();
         }
 
         System.out.println("enter size2: ");
         int size2 = sc.nextInt();
         int arr2[] = new int[size2];
-        for(int i = 0;i<size2;i++){
-        arr2[i] = sc.nextInt();
+        for (int i = 0; i < size2; i++) {
+            arr2[i] = sc.nextInt();
         }
 
-        int result1[] = removeduplicate(arr1);
-        int result2[] = removeduplicate(arr2);
-
         System.out.println("Union Array:");
-        int result[] = union(arr1, arr2);
+        int result[] = removeduplicate(union(arr1, arr2));
         System.out.println(Arrays.toString(result));
 
     }
-
 }
