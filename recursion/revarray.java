@@ -1,17 +1,40 @@
 public class revarray {
-    public static void rev(int l,int r,int arr[]){
-        if(l>=r){
+    //this was through two pointers approach
+
+    // public static void rev(int l,int r,int arr[]){
+    //     if(l>=r){
+    //         return;
+    //     }
+    //     int temp = arr[l];
+    //     arr[l] = arr[r];
+    //     arr[r] = temp;
+    //     rev(l+1,r-1,arr);
+    // }
+    // public static void main(String[] args) {
+    //     int[] arr = {1,2,3,4,5};
+    //     rev(0,arr.length,arr);
+    //     for(int i = 0;i<arr.length;i++){
+    //         System.out.println(arr[i]);
+    //     }
+    // }
+
+    //by using one pointer only
+
+    public static void rev(int i,int n,int arr[]){
+        if(i>=n/2){
             return;
         }
-        int temp = arr[l];
-        arr[l] = arr[r];
-        arr[r] = temp;
-        rev(l+1,r-1,arr);
+        int temp = arr[i];
+        arr[i] = arr[n-i-1];
+        arr[n-i-1] = temp;
+        rev(i+1,n,arr);
+
     }
+
     public static void main(String[] args) {
-        int[] arr = {1,2,3,4,5};
-        rev(0,arr.length-1,arr);
-        for(int i = 0;i<arr.length;i++){
+        int arr[] = {1,2,3,3,4,5};
+        rev(0,arr.length,arr);
+        for(int i=0;i<arr.length;i++){
             System.out.println(arr[i]);
         }
     }
